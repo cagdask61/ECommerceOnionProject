@@ -1,4 +1,6 @@
-﻿using ECommerceOnionProject.Application.Repositories.CustomerRepository;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using ECommerceOnionProject.Application.Repositories.CustomerRepository;
 using ECommerceOnionProject.Application.Repositories.OrderRepository;
 using ECommerceOnionProject.Application.Repositories.ProductRepository;
 using ECommerceOnionProject.Persistence.Configurations;
@@ -6,8 +8,6 @@ using ECommerceOnionProject.Persistence.Contexts;
 using ECommerceOnionProject.Persistence.Repositories.CustomerRepository;
 using ECommerceOnionProject.Persistence.Repositories.OrderRepository;
 using ECommerceOnionProject.Persistence.Repositories.ProductRepository;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace ECommerceOnionProject.Persistence;
 
