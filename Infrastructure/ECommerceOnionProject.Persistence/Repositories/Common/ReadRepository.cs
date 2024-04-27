@@ -17,23 +17,35 @@ public class ReadRepository<T> : IReadRepository<T> where T : BaseEntity
     public DbSet<T> Table => _context.Set<T>();
 
 
-    public IQueryable<T> GetAll()
+    public IQueryable<T> GetAll(bool tracking = true)
     {
-        return Table;
+        var query = Table.AsQueryable();
+        if (!tracking)
+            query = query.AsNoTracking();
+        return query;
     }
 
-    public IQueryable<T> GetAll(Expression<Func<T, bool>> predicate)
+    public IQueryable<T> GetAll(Expression<Func<T, bool>> predicate, bool tracking = true)
     {
-        return Table.Where(predicate);
+        var query = Table.AsQueryable();
+        if(!tracking)
+            query = query.AsNoTracking();
+        return query.Where(predicate);
     }
 
-    public Task<T?> GetFirstAsync(Expression<Func<T, bool>> predicate)
+    public Task<T?> GetFirstAsync(Expression<Func<T, bool>> predicate, bool tracking = true)
     {
-        return Table.FirstOrDefaultAsync(predicate);
+        var query = Table.AsQueryable();
+        if (!tracking)
+            query = query.AsNoTracking();
+        return query.FirstOrDefaultAsync(predicate);
     }
 
-    public Task<T?> GetSingleAsync(Expression<Func<T, bool>> predicate)
+    public Task<T?> GetSingleAsync(Expression<Func<T, bool>> predicate, bool tracking = true)
     {
-        return Table.SingleOrDefaultAsync(predicate);
+        var query = Table.AsQueryable();
+        if (!tracking)
+            query = query.AsNoTracking();
+        return query.SingleOrDefaultAsync(predicate);
     }
 }
